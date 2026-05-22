@@ -107,3 +107,17 @@ def menu():
 
 if __name__ == "__main__":
     menu()
+     profiler = cProfile.Profile()
+    profiler.enable()
+    
+
+    menu()
+    
+
+    profiler.disable()
+    
+    print("\n" + "="*50)
+    print("ANÁLISIS DE EFICIENCIA (TOP 20 FUNCIONES MÁS LENTAS)")
+    print("="*50)
+    stats = pstats.Stats(profiler).sort_stats('tottime')
+    stats.print_stats(20)
